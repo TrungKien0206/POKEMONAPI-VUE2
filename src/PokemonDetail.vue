@@ -1,21 +1,17 @@
 <template>
   <div class="pokemon-detail">
-    <!-- Nút quay lại -->
     <button @click="router.push('/')" class="back-button">⬅ Back</button>
 
-    <!-- Hiển thị trạng thái tải dữ liệu -->
     <div v-if="isLoading" class="loading">Đang tải...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
-    <!-- Hiển thị thông tin Pokémon -->
     <div v-else>
-      <!-- Ảnh Pokémon -->
       <img :src="pokemon.image" :alt="pokemon.name" class="pokemon-image" />
 
-      <!-- Tên Pokémon -->
+      
       <h1 class="pokemon-name">{{ pokemon.name }}</h1>
 
-      <!-- Loại Pokémon -->
+     
       <div class="pokemon-types">
         <span
           v-for="type in pokemon.types"
@@ -27,12 +23,12 @@
         </span>
       </div>
 
-      <!-- Mô tả Pokémon kèm hệ -->
+     
       <p class="pokemon-description">
         {{ pokemon.description }}
       </p>
 
-      <!-- Chiều cao & Cân nặng -->
+     
       <div class="info-container">
         <div class="info-box">
           <span class="info-label">Height</span>
@@ -44,7 +40,7 @@
         </div>
       </div>
 
-      <!-- Abilities -->
+     
       <h3>Abilities</h3>
       <div class="abilities">
         <span
@@ -56,7 +52,7 @@
         </span>
       </div>
 
-      <!-- Stats -->
+    
       <h3>Stats</h3>
       <div class="stats-container">
         <div v-for="(value, key) in statLabels" :key="key" class="stat">
@@ -67,7 +63,6 @@
         </div>
       </div>
 
-      <!-- Evolution -->
       <h3>Evolution</h3>
       <div class="evolution-container">
         <div class="evolution-chain">
