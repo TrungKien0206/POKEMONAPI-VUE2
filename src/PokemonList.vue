@@ -31,8 +31,8 @@ const fetchPokemon = async () => {
       })
     );
 
-    allPokemon.value = [...allPokemon.value, ...pokemonDetails]; // Cập nhật danh sách tổng
-    displayedPokemon.value = allPokemon.value; // Luôn hiển thị tất cả Pokémon đã tải
+    allPokemon.value = [...allPokemon.value, ...pokemonDetails]; 
+    displayedPokemon.value = allPokemon.value; //  hiển thị tất cả Pokémon đã tải
     offset.value += limit; // Tăng offset để tải tiếp
   } catch (err) {
     error.value = err.message;
@@ -75,22 +75,20 @@ async function fetchAllPokemon() {
   }
 }
 
-// Tăng số lượng Pokémon hiển thị lên 20 mỗi lần nhấn
 const loadMore = () => {
   if (visibleCount.value < allPokemonList.value.length) {
     visibleCount.value += 40;
   }
 };
 
-// Lọc Pokémon theo từ khóa tìm kiếm
 const filteredPokemon = computed(() => {
   const searchResult = allPokemonList.value.filter((pokemon) =>
     pokemon.name.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
-  return searchResult.slice(0, visibleCount.value); // Giới hạn số Pokémon hiển thị
+  return searchResult.slice(0, visibleCount.value); 
 });
 
-// Chuyển đến trang chi tiết Pokémon
+
 const goToDetail = (id) => {
   console.log("Chuyển đến Pokémon ID:", id);
   router.push(`/pokemon/${id}`);
@@ -103,7 +101,6 @@ onMounted(fetchAllPokemon);
   <div class="container">
     <h1 style="color: rgb(170, 49, 49)">Pokemon API</h1>
 
-    <!-- Thanh tìm kiếm -->
     <div class="search-bar">
       <input
         v-model="searchQuery"
@@ -116,7 +113,6 @@ onMounted(fetchAllPokemon);
       <div class="loading-spinner"></div>
     </div>
 
-    <!-- Danh sách Pokémon -->
     <div v-else class="pokemon-list">
       <router-link
         v-for="pokemon in filteredPokemon"
@@ -139,7 +135,6 @@ onMounted(fetchAllPokemon);
       </router-link>
     </div>
 
-    <!-- Nút Load More -->
     <div
       v-if="visibleCount < allPokemonList.length"
       class="load-more-container"
@@ -257,8 +252,6 @@ h1 {
   background-color: #a890f0;
 }
 
-/* Nút Load More */
-/* Nút Load More */
 .load-more-container {
   margin-top: 20px;
   text-align: center;
